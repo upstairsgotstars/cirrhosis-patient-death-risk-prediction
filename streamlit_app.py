@@ -385,7 +385,7 @@ with st.container(border=True):
             min_value=1,
             max_value=4,
             value=3,
-            step=1,
+            step=1.0,
             key="stage_selected"
         )
 
@@ -477,7 +477,7 @@ with st.container(border=True):
             min_value=4,
             max_value=588,
             value=156,
-            step=10,
+            step=10.0,
             key="copper_selected"
 
 
@@ -488,7 +488,7 @@ with st.container(border=True):
             min_value=33,
             max_value=598,
             value=172,
-            step=10,
+            step=10.0,
             key="tryglicerides_selected"
 
         )
@@ -500,7 +500,7 @@ with st.container(border=True):
             min_value=120,
             max_value=1775,
             value=261,
-            step=10,
+            step=10.0,
             key="cholesterol_selected"
 
         )
@@ -510,7 +510,7 @@ with st.container(border=True):
             min_value=289.0,
             max_value=13862.4,
             value=1718.0,
-            step=100,
+            step=100.0,
             key="alk_phos_selected"
 
         )
@@ -520,7 +520,7 @@ with st.container(border=True):
             min_value=62,
             max_value=563,
             value=304,
-            step=10,
+            step=10.0,
             key="platelets_selected"
 
         )
