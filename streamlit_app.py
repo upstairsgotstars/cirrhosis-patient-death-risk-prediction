@@ -1,12 +1,7 @@
-## Import libraries
-
 import streamlit as st
 import pandas as pd
 import joblib
 import base64
-
-
-## Page configuration
 
 st.set_page_config(
     page_title="Dr CirrhoRisk",
@@ -282,7 +277,7 @@ lower_risk_sample = {
     "age_selected": 46.3,
     "sex_selected": "Female",
     "drug_selected": "D-penicillamine",
-    "stage_selected": 1.0,
+    "stage_selected": 1,
     "ascites_selected": "No",
     "hepatomegaly_selected": "No",
     "spiders_selected": "No",
@@ -303,7 +298,7 @@ higher_risk_sample = {
     "age_selected": 58.8,
     "sex_selected": "Female",
     "drug_selected": "D-penicillamine",
-    "stage_selected": 4.0,
+    "stage_selected": 4,
     "ascites_selected": "Yes",
     "hepatomegaly_selected": "Yes",
     "spiders_selected": "Yes",
@@ -385,7 +380,7 @@ with st.container(border=True):
             min_value=1,
             max_value=4,
             value=3,
-            step=1.0,
+            step=1,
             key="stage_selected"
         )
 
@@ -477,7 +472,7 @@ with st.container(border=True):
             min_value=4,
             max_value=588,
             value=156,
-            step=10.0,
+            step=10,
             key="copper_selected"
 
 
@@ -488,7 +483,7 @@ with st.container(border=True):
             min_value=33,
             max_value=598,
             value=172,
-            step=10.0,
+            step=10,
             key="tryglicerides_selected"
 
         )
@@ -500,7 +495,7 @@ with st.container(border=True):
             min_value=120,
             max_value=1775,
             value=261,
-            step=10.0,
+            step=10,
             key="cholesterol_selected"
 
         )
@@ -520,7 +515,7 @@ with st.container(border=True):
             min_value=62,
             max_value=563,
             value=304,
-            step=10.0,
+            step=10,
             key="platelets_selected"
 
         )
