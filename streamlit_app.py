@@ -10,12 +10,11 @@ import base64
 
 st.set_page_config(
     page_title="Dr CirrhoRisk",
-    page_icon=":material/health_and_safety:",
+    page_icon="🩺",
     layout="wide"
 )
 
 
-## Page styling
 
 st.markdown(
     """
@@ -139,18 +138,15 @@ st.markdown(
         border-right: 1px solid #C5CFDA;
     }
 
-    /* Sidebar spacing */
     [data-testid="stSidebarContent"] {
         padding-top: 1.5rem;
     }
 
-    /* Sidebar headings */
     [data-testid="stSidebar"] h3 {
         color: #003F6B;
         font-size: 19px;
     }
 
-    /* Sidebar normal text */
     [data-testid="stSidebar"] p {
         color: #374A5E;
         font-size: 14px;
@@ -283,44 +279,44 @@ default_sample = {
 
 
 lower_risk_sample = {
-    "age_selected": 45.2,
+    "age_selected": 46.3,
     "sex_selected": "Female",
     "drug_selected": "D-penicillamine",
-    "stage_selected": 2,
+    "stage_selected": 1.0,
     "ascites_selected": "No",
     "hepatomegaly_selected": "No",
     "spiders_selected": "No",
     "edema_selected": "No Edema",
     "bilirubin_selected": 0.8,
-    "cholesterol_selected": 250,
-    "albumin_selected": 4.10,
-    "copper_selected": 40,
-    "alk_phos_selected": 900.0,
-    "sgot_selected": 70.0,
-    "tryglicerides_selected": 90,
-    "platelets_selected": 350,
+    "cholesterol_selected": 253.0,
+    "albumin_selected": 3.48,
+    "copper_selected": 65.0,
+    "alk_phos_selected": 688.0,
+    "sgot_selected": 57.0,
+    "tryglicerides_selected": 80.0,
+    "platelets_selected": 252.0,
     "prothrombin_selected": 10.0
 }
 
 
 higher_risk_sample = {
-    "age_selected": 68.0,
-    "sex_selected": "Male",
-    "drug_selected": "Placebo",
-    "stage_selected": 4,
+    "age_selected": 58.8,
+    "sex_selected": "Female",
+    "drug_selected": "D-penicillamine",
+    "stage_selected": 4.0,
     "ascites_selected": "Yes",
     "hepatomegaly_selected": "Yes",
     "spiders_selected": "Yes",
     "edema_selected": "Edema Present",
-    "bilirubin_selected": 12.0,
-    "cholesterol_selected": 600,
-    "albumin_selected": 2.40,
-    "copper_selected": 300,
-    "alk_phos_selected": 5000.0,
-    "sgot_selected": 250.0,
-    "tryglicerides_selected": 250,
-    "platelets_selected": 110,
-    "prothrombin_selected": 14.0
+    "bilirubin_selected": 14.5,
+    "cholesterol_selected": 261.0,
+    "albumin_selected": 2.6,
+    "copper_selected": 156,
+    "alk_phos_selected": 1718.0,
+    "sgot_selected": 137.0,
+    "tryglicerides_selected": 172.0,
+    "platelets_selected": 190.0,
+    "prothrombin_selected": 12.2
 }
 
 button_col1, button_col2, button_col3, empty_col = st.columns(
@@ -355,8 +351,6 @@ with button_col3:
         type="secondary"
     )
 
-## Demographics
-
 with st.container(border=True):
 
     st.markdown(
@@ -372,7 +366,7 @@ with st.container(border=True):
             min_value=26.3,
             max_value=78.5,
             value=54.2,
-            step=0.1,
+            step=1.0,
             key="age_selected"
         )
 
@@ -396,7 +390,6 @@ with st.container(border=True):
         )
 
 
-## Clinical observations
 
 with st.container(border=True):
 
@@ -457,8 +450,6 @@ with st.container(border=True):
             key="drug_selected"
         )
 
-
-## Laboratory measurements
 
 with st.container(border=True):
 
@@ -566,7 +557,6 @@ with st.container(border=True):
         )
 
 
-## Predict button
 
 
 if st.button(
@@ -574,8 +564,6 @@ if st.button(
     type="primary",
     use_container_width=True
 ):
-
-    ## Apply the same one-hot encoding used during training
 
     if drug_selected == "Placebo":
         drug_placebo = 1
@@ -613,8 +601,6 @@ if st.button(
         edema_y = 0
 
 
-    ## Convert input data to a DataFrame
-
     df_input = pd.DataFrame({
 
         "Age": [age_selected],
@@ -638,27 +624,15 @@ if st.button(
     })
 
 
-    ## Predict mortality risk
-
-    ## Predict mortality risk
-
     y_unseen_pred = model.predict(df_input)[0]
 
-
-    ## Obtain prediction probabilities
-
     prediction_probability = model.predict_proba(df_input)[0]
-
-
-    ## Find the probability for the predicted class
 
     predicted_class_position = list(model.classes_).index(y_unseen_pred)
 
     model_confidence = (
         prediction_probability[predicted_class_position] * 100
     )
-
-    ## Display prediction
 
     if y_unseen_pred == 0:
 
